@@ -1,0 +1,14 @@
+{
+  "authorize": "Авторизация",
+  "email": "Эл. почта",
+  "password": "Пароль",
+  "name": "Имя",
+  "register": "Зарегистрироваться",
+  "signIn": "Войти",
+  "wrongPasswordOrEmail": "Неправильный пароль или эл.почта",
+  "registration": "Регистрация",
+  "errorRegistration": "Ошибка с регистрацией",
+  "alreadyHaveAnAccount": "Войти в уже существующий аккаунт",
+  "error": "Ошибка",
+  "chats": "Чаты"
+}
