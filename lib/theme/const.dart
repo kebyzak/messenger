@@ -8,9 +8,16 @@ const TextStyle kAppBarTextStyle = TextStyle(
   fontFamily: 'Gilroy',
 );
 
+const TextStyle kAppBarTitleStyle = TextStyle(
+  fontSize: 32,
+  fontWeight: FontWeight.bold,
+  color: AppColors.blackColor,
+  fontFamily: 'Gilroy',
+);
+
 const TextStyle kHintTextStyle = TextStyle(
   color: AppColors.darkGrayColor,
   fontSize: 12,
-  fontWeight: FontWeight.w400,
+  fontWeight: FontWeight.w500,
   fontFamily: 'Gilroy',
 );

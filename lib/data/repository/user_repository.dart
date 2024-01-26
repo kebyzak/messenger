@@ -1,77 +1,67 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:messenger_app/presentation/models/user_model.dart';
 
 class UserRepository {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<User?> signIn({
+  Future<UserModel?> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      final user =
-          await _firestore.collection('users').doc(result.user!.uid).get();
+      final user = await _db.collection('users').doc(result.user!.uid).get();
       final displayName = user['name'] as String;
 
       await result.user!.updateDisplayName(displayName);
 
-      return result.user!;
+      return UserModel.fromSnapshot(user);
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<User?> signUp({
+  Future<UserModel?> signUp({
     required email,
     required String password,
     required String name,
   }) async {
     try {
-      UserCredential result =
-          await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      await _firestore.collection('users').doc(result.user!.uid).set({
+      await _db.collection('users').doc(result.user!.uid).set({
         'uid': result.user!.uid,
         'name': name,
         'email': email,
       });
 
       await result.user!.updateDisplayName(name);
-      return result.user!;
+      final user = await _db.collection('users').doc(result.user!.uid).get();
+      return UserModel.fromSnapshot(user);
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<List<User>> fetchUsers() async {
+  Future<List<UserModel>> fetchUsers() async {
     try {
-      List<User> users = [];
+      final currentUserUid = _auth.currentUser?.uid;
 
-      await _firestore.collection('users').get().then((querySnapshot) {
-        for (var doc in querySnapshot.docs) {
-          final userData = doc.data();
-          final uid = userData['uid'];
-          final existingUser = users.firstWhere(
-            (user) => user.uid == uid,
-          );
-
-          if (existingUser == null) {
-            final user = _firebaseAuth.currentUser;
-            users.add(user!);
-          }
-        }
-      });
-
-      return users;
+      final snapshot = await _db.collection('users').get();
+      final userData = snapshot.docs
+          .map((e) => UserModel.fromSnapshot(e))
+          .where((user) => user.uid != currentUserUid)
+          .toList();
+      return userData;
     } catch (e) {
       rethrow;
     }
@@ -79,7 +69,7 @@ class UserRepository {
 
   Future<void> logout() async {
     try {
-      await _firebaseAuth.signOut();
+      await _auth.signOut();
     } catch (e) {
       rethrow;
     }

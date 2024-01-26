@@ -14,7 +14,7 @@ class DialogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
+      navigationBar: const CupertinoNavigationBar(
         middle: Text('Dialog Page'),
       ),
       child: Text(receiverId),

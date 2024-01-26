@@ -30,10 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Ошибка"),
         "errorRegistration":
             MessageLookupByLibrary.simpleMessage("Ошибка с регистрацией"),
-        "name": MessageLookupByLibrary.simpleMessage("Имя"),
+        "name": MessageLookupByLibrary.simpleMessage("ФИО"),
         "password": MessageLookupByLibrary.simpleMessage("Пароль"),
         "register": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
         "registration": MessageLookupByLibrary.simpleMessage("Регистрация"),
+        "search": MessageLookupByLibrary.simpleMessage("Поиск"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "wrongPasswordOrEmail": MessageLookupByLibrary.simpleMessage(
             "Неправильный пароль или эл.почта")

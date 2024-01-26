@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:messenger_app/data/repository/user_repository.dart';
-import 'package:messenger_app/presentation/models/profile.dart';
+import 'package:messenger_app/presentation/models/user_model.dart';
 
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';
@@ -10,7 +10,7 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
   String? userId;
-  List<Profile> users = [];
+  List<UserModel> users = [];
 
   UserBloc({required this.userRepository}) : super(const UserState.initial()) {
     on<_LoginEvent>((event, emit) async {

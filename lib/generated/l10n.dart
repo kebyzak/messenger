@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Имя`
+  /// `ФИО`
   String get name {
     return Intl.message(
-      'Имя',
+      'ФИО',
       name: 'name',
       desc: '',
       args: [],
@@ -165,6 +165,16 @@ class S {
     return Intl.message(
       'Чаты',
       name: 'chats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поиск`
+  String get search {
+    return Intl.message(
+      'Поиск',
+      name: 'search',
       desc: '',
       args: [],
     );

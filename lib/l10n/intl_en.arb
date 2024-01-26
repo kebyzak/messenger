@@ -2,7 +2,7 @@
   "authorize": "Авторизация",
   "email": "Эл. почта",
   "password": "Пароль",
-  "name": "Имя",
+  "name": "ФИО",
   "register": "Зарегистрироваться",
   "signIn": "Войти",
   "wrongPasswordOrEmail": "Неправильный пароль или эл.почта",
@@ -10,5 +10,6 @@
   "errorRegistration": "Ошибка с регистрацией",
   "alreadyHaveAnAccount": "Войти в уже существующий аккаунт",
   "error": "Ошибка",
-  "chats": "Чаты"
+  "chats": "Чаты",
+  "search": "Поиск"
 }

@@ -18,33 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loginEvent,
+    required TResult Function() fetchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loginEvent,
+    TResult? Function()? fetchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loginEvent,
+    TResult Function()? fetchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchUsers value) loginEvent,
+    required TResult Function(_FetchUsers value) fetchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchUsers value)? loginEvent,
+    TResult? Function(_FetchUsers value)? fetchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchUsers value)? loginEvent,
+    TResult Function(_FetchUsers value)? fetchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,7 +90,7 @@ class _$FetchUsersImpl implements _FetchUsers {
 
   @override
   String toString() {
-    return 'ChatEvent.loginEvent()';
+    return 'ChatEvent.fetchEvent()';
   }
 
   @override
@@ -105,27 +105,27 @@ class _$FetchUsersImpl implements _FetchUsers {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loginEvent,
+    required TResult Function() fetchEvent,
   }) {
-    return loginEvent();
+    return fetchEvent();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loginEvent,
+    TResult? Function()? fetchEvent,
   }) {
-    return loginEvent?.call();
+    return fetchEvent?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loginEvent,
+    TResult Function()? fetchEvent,
     required TResult orElse(),
   }) {
-    if (loginEvent != null) {
-      return loginEvent();
+    if (fetchEvent != null) {
+      return fetchEvent();
     }
     return orElse();
   }
@@ -133,27 +133,27 @@ class _$FetchUsersImpl implements _FetchUsers {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_FetchUsers value) loginEvent,
+    required TResult Function(_FetchUsers value) fetchEvent,
   }) {
-    return loginEvent(this);
+    return fetchEvent(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FetchUsers value)? loginEvent,
+    TResult? Function(_FetchUsers value)? fetchEvent,
   }) {
-    return loginEvent?.call(this);
+    return fetchEvent?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchUsers value)? loginEvent,
+    TResult Function(_FetchUsers value)? fetchEvent,
     required TResult orElse(),
   }) {
-    if (loginEvent != null) {
-      return loginEvent(this);
+    if (fetchEvent != null) {
+      return fetchEvent(this);
     }
     return orElse();
   }
