@@ -13,9 +13,24 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc({required this.userRepository}) : super(const ChatState.initial()) {
     on<_FetchUsers>((event, emit) async {
       emit(const ChatState.loading());
-
       try {
         users = await userRepository.fetchUsers();
+        emit(const ChatState.success());
+      } catch (e) {
+        emit(const ChatState.error());
+      }
+    });
+
+    on<_SearchUsers>((event, emit) async {
+      emit(const ChatState.loading());
+      try {
+        final filteredUsers = users
+            .where((user) =>
+                user.name.toLowerCase().startsWith(event.query.toLowerCase()))
+            .toList();
+
+        users = filteredUsers;
+
         emit(const ChatState.success());
       } catch (e) {
         emit(const ChatState.error());

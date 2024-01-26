@@ -4,8 +4,11 @@ import 'package:messenger_app/generated/l10n.dart';
 import 'package:messenger_app/theme/app_colors.dart';
 
 class AppSearchBar extends StatelessWidget {
+  final TextEditingController controller;
+
   const AppSearchBar({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -21,7 +24,7 @@ class AppSearchBar extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(4, 8, 0, 8),
           child: CupertinoSearchTextField(
             backgroundColor: Colors.transparent,
-            onChanged: (query) {},
+            controller: controller,
             placeholder: S.of(context).search,
             placeholderStyle: const TextStyle(
               color: AppColors.grayColor,

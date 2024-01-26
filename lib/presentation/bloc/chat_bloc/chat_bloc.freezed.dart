@@ -19,32 +19,38 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchEvent,
+    required TResult Function(String query) searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchEvent,
+    TResult? Function(String query)? searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchEvent,
+    TResult Function(String query)? searchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchUsers value) fetchEvent,
+    required TResult Function(_SearchUsers value) searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchUsers value)? fetchEvent,
+    TResult? Function(_SearchUsers value)? searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchUsers value)? fetchEvent,
+    TResult Function(_SearchUsers value)? searchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +112,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchEvent,
+    required TResult Function(String query) searchEvent,
   }) {
     return fetchEvent();
   }
@@ -114,6 +121,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchEvent,
+    TResult? Function(String query)? searchEvent,
   }) {
     return fetchEvent?.call();
   }
@@ -122,6 +130,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchEvent,
+    TResult Function(String query)? searchEvent,
     required TResult orElse(),
   }) {
     if (fetchEvent != null) {
@@ -134,6 +143,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchUsers value) fetchEvent,
+    required TResult Function(_SearchUsers value) searchEvent,
   }) {
     return fetchEvent(this);
   }
@@ -142,6 +152,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchUsers value)? fetchEvent,
+    TResult? Function(_SearchUsers value)? searchEvent,
   }) {
     return fetchEvent?.call(this);
   }
@@ -150,6 +161,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchUsers value)? fetchEvent,
+    TResult Function(_SearchUsers value)? searchEvent,
     required TResult orElse(),
   }) {
     if (fetchEvent != null) {
@@ -161,6 +173,139 @@ class _$FetchUsersImpl implements _FetchUsers {
 
 abstract class _FetchUsers implements ChatEvent {
   const factory _FetchUsers() = _$FetchUsersImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchUsersImplCopyWith<$Res> {
+  factory _$$SearchUsersImplCopyWith(
+          _$SearchUsersImpl value, $Res Function(_$SearchUsersImpl) then) =
+      __$$SearchUsersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchUsersImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$SearchUsersImpl>
+    implements _$$SearchUsersImplCopyWith<$Res> {
+  __$$SearchUsersImplCopyWithImpl(
+      _$SearchUsersImpl _value, $Res Function(_$SearchUsersImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$SearchUsersImpl(
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchUsersImpl implements _SearchUsers {
+  const _$SearchUsersImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'ChatEvent.searchEvent(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchUsersImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchUsersImplCopyWith<_$SearchUsersImpl> get copyWith =>
+      __$$SearchUsersImplCopyWithImpl<_$SearchUsersImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchEvent,
+    required TResult Function(String query) searchEvent,
+  }) {
+    return searchEvent(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchEvent,
+    TResult? Function(String query)? searchEvent,
+  }) {
+    return searchEvent?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchEvent,
+    TResult Function(String query)? searchEvent,
+    required TResult orElse(),
+  }) {
+    if (searchEvent != null) {
+      return searchEvent(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchUsers value) fetchEvent,
+    required TResult Function(_SearchUsers value) searchEvent,
+  }) {
+    return searchEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchUsers value)? fetchEvent,
+    TResult? Function(_SearchUsers value)? searchEvent,
+  }) {
+    return searchEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchUsers value)? fetchEvent,
+    TResult Function(_SearchUsers value)? searchEvent,
+    required TResult orElse(),
+  }) {
+    if (searchEvent != null) {
+      return searchEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchUsers implements ChatEvent {
+  const factory _SearchUsers(final String query) = _$SearchUsersImpl;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$SearchUsersImplCopyWith<_$SearchUsersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

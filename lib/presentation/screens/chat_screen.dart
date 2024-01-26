@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,13 +23,37 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final UserRepository userRepository = UserRepository();
+  final TextEditingController _searchController = TextEditingController();
+  Timer? _searchTimer;
+
   @override
   void initState() {
     super.initState();
     context.read<ChatBloc>().add(const ChatEvent.fetchEvent());
+    _searchController.addListener(_onSearchTextChanged);
   }
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    _searchTimer?.cancel();
+    super.dispose();
+  }
+
+  void _onSearchTextChanged() {
+    _searchTimer?.cancel();
+
+    _searchTimer = Timer(const Duration(seconds: 1), () {
+      final searchQuery = _searchController.text;
+
+      if (searchQuery.isNotEmpty) {
+        context.read<ChatBloc>().add(ChatEvent.searchEvent(searchQuery));
+      } else {
+        context.read<ChatBloc>().add(const ChatEvent.fetchEvent());
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -43,9 +69,9 @@ class _ChatPageState extends State<ChatPage> {
       child: SafeArea(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(bottom: 24, top: 6),
-              child: AppSearchBar(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24, top: 6),
+              child: AppSearchBar(controller: _searchController),
             ),
             const Divider(
               color: AppColors.strokeColor,
