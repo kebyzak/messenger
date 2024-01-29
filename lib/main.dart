@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:messenger_app/data/repository/dialog_repository.dart';
 import 'package:messenger_app/data/repository/user_repository.dart';
 import 'package:messenger_app/firebase_options.dart';
 import 'package:messenger_app/generated/l10n.dart';
 import 'package:messenger_app/presentation/bloc/chat_bloc/chat_bloc.dart';
+import 'package:messenger_app/presentation/bloc/dialog_bloc/dialog_bloc.dart';
 import 'package:messenger_app/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:messenger_app/presentation/routes/router.dart';
 
@@ -22,6 +24,7 @@ class MainApp extends StatelessWidget {
 
   final appRouter = AppRouter();
   final userRepository = UserRepository();
+  final dialogRepository = DialogRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ChatBloc(userRepository: userRepository),
+        ),
+        BlocProvider(
+          create: (context) => DialogBloc(dialogRepository: dialogRepository),
         ),
       ],
       child: MaterialApp.router(

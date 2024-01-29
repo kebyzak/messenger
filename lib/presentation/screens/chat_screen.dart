@@ -107,8 +107,8 @@ class _ChatPageState extends State<ChatPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => DialogPage(
-                                            userEmail: user.email,
-                                            receiverId: user.uid,
+                                            receiverName: user.name,
+                                            receiverUid: user.uid,
                                           ),
                                         ),
                                       );

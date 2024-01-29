@@ -10,6 +10,7 @@ part 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final UserRepository userRepository;
   List<UserModel> users = [];
+
   ChatBloc({required this.userRepository}) : super(const ChatState.initial()) {
     on<_FetchUsers>((event, emit) async {
       emit(const ChatState.loading());

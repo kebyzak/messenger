@@ -27,8 +27,8 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: DialogPage(
           key: args.key,
-          userEmail: args.userEmail,
-          receiverId: args.receiverId,
+          receiverUid: args.receiverUid,
+          receiverName: args.receiverName,
         ),
       );
     },
@@ -70,15 +70,15 @@ class ChatRoute extends PageRouteInfo<void> {
 class DialogRoute extends PageRouteInfo<DialogRouteArgs> {
   DialogRoute({
     Key? key,
-    required String userEmail,
-    required String receiverId,
+    required String receiverUid,
+    required String receiverName,
     List<PageRouteInfo>? children,
   }) : super(
           DialogRoute.name,
           args: DialogRouteArgs(
             key: key,
-            userEmail: userEmail,
-            receiverId: receiverId,
+            receiverUid: receiverUid,
+            receiverName: receiverName,
           ),
           initialChildren: children,
         );
@@ -91,19 +91,19 @@ class DialogRoute extends PageRouteInfo<DialogRouteArgs> {
 class DialogRouteArgs {
   const DialogRouteArgs({
     this.key,
-    required this.userEmail,
-    required this.receiverId,
+    required this.receiverUid,
+    required this.receiverName,
   });
 
   final Key? key;
 
-  final String userEmail;
+  final String receiverUid;
 
-  final String receiverId;
+  final String receiverName;
 
   @override
   String toString() {
-    return 'DialogRouteArgs{key: $key, userEmail: $userEmail, receiverId: $receiverId}';
+    return 'DialogRouteArgs{key: $key, receiverUid: $receiverUid, receiverName: $receiverName}';
   }
 }
 
