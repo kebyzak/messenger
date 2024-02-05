@@ -112,9 +112,11 @@ class RegisterPage extends StatelessWidget {
                     AutoRouter.of(context).replaceNamed('/login');
                   },
                   child: Center(
-                    child: Text(
-                      S.of(context).alreadyHaveAnAccount,
-                      style: kHintTextStyle,
+                    child: Material(
+                      child: Text(
+                        S.of(context).alreadyHaveAnAccount,
+                        style: kHintTextStyle,
+                      ),
                     ),
                   ),
                 ),
