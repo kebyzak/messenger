@@ -63,7 +63,7 @@ class ChatBubble extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 14, 15, 2),
               child: Text(
                 timeString,
-                style: textStyle.copyWith(fontSize: 12),
+                style: textStyle.copyWith(fontSize: 8.5),
               ),
             ),
           ],

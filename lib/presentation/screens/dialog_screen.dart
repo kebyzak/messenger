@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger_app/data/repository/dialog_repository.dart';
 import 'package:messenger_app/generated/l10n.dart';
@@ -110,9 +111,9 @@ class _DialogPageState extends State<DialogPage> {
                         padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
                         child: Row(
                           children: [
-                            const Icon(
-                              CupertinoIcons.left_chevron,
-                              size: 32,
+                            const ImageIcon(
+                              AssetImage("assets/icons/arrowleft.png"),
+                              size: 24,
                             ),
                             const SizedBox(width: 6),
                             widget.leading,
@@ -210,30 +211,77 @@ class _DialogPageState extends State<DialogPage> {
                   },
                 ),
               ),
+              const Divider(
+                color: AppColors.strokeColor,
+                height: 1,
+              ),
               BlocProvider.value(
                 value: _dialogBloc,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CupertinoTextField(
-                        controller: _msgController,
-                        obscureText: false,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        BlocProvider.of<DialogBloc>(context).add(
-                          SendEvent(
-                            receiverUid: widget.receiverUid,
-                            message: _msgController.text,
-                            senderUid: _auth.currentUser!.uid,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: AppColors.strokeColor,
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const ImageIcon(
+                            AssetImage("assets/icons/v52.png"),
                           ),
-                        );
-                        _msgController.clear();
-                      },
-                      icon: const Icon(Icons.arrow_upward_rounded, size: 40),
-                    ),
-                  ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Container(
+                          height: 42,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: AppColors.strokeColor,
+                          ),
+                          child: CupertinoTextField(
+                            controller: _msgController,
+                            placeholder: S.of(context).message,
+                            padding: const EdgeInsets.only(left: 12),
+                            style: kDateTextStyle.copyWith(fontSize: 16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: Colors.transparent),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: AppColors.strokeColor,
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            BlocProvider.of<DialogBloc>(context).add(
+                              SendEvent(
+                                receiverUid: widget.receiverUid,
+                                message: _msgController.text,
+                                senderUid: _auth.currentUser!.uid,
+                              ),
+                            );
+                            _msgController.clear();
+                          },
+                          icon: const ImageIcon(
+                            AssetImage("assets/icons/audio.png"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

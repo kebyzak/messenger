@@ -42,5 +42,7 @@ flutter:
     - family: Gilroy
       fonts:
         - asset: assets/fonts/Gilroy.ttf
+  assets:
+    - assets/icons/
 flutter_intl:
   enabled: true

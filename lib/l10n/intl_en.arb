@@ -11,5 +11,6 @@
   "alreadyHaveAnAccount": "Войти в уже существующий аккаунт",
   "error": "Ошибка",
   "chats": "Чаты",
-  "search": "Поиск"
+  "search": "Поиск",
+  "message": "Сообщение"
 }
