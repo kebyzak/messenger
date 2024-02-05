@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:messenger_app/presentation/models/message.dart';
 import 'package:messenger_app/presentation/models/user_model.dart';
 
 class UserRepository {
@@ -62,6 +63,34 @@ class UserRepository {
           .where((user) => user.uid != currentUserUid)
           .toList();
       return userData;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Message>> getLastMessages(String userId) async {
+    try {
+      final currentUserUid = _auth.currentUser!.uid;
+      final List<String> ids = [currentUserUid, userId];
+      ids.sort();
+      final String chatId = ids.join("_");
+
+      final snapshot = await _db
+          .collection('chats')
+          .doc(chatId)
+          .collection('messages')
+          .orderBy('timestamp', descending: true)
+          .limit(1)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        final messages =
+            snapshot.docs.map((doc) => Message.fromMap(doc.data())).toList();
+
+        return messages;
+      }
+
+      return [];
     } catch (e) {
       rethrow;
     }

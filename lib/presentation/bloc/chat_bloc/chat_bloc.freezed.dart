@@ -20,18 +20,21 @@ mixin _$ChatEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchEvent,
     required TResult Function(String query) searchEvent,
+    required TResult Function(Message newMessage) newMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchEvent,
     TResult? Function(String query)? searchEvent,
+    TResult? Function(Message newMessage)? newMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchEvent,
     TResult Function(String query)? searchEvent,
+    TResult Function(Message newMessage)? newMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$ChatEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchUsers value) fetchEvent,
     required TResult Function(_SearchUsers value) searchEvent,
+    required TResult Function(_NewMessage value) newMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchUsers value)? fetchEvent,
     TResult? Function(_SearchUsers value)? searchEvent,
+    TResult? Function(_NewMessage value)? newMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchUsers value)? fetchEvent,
     TResult Function(_SearchUsers value)? searchEvent,
+    TResult Function(_NewMessage value)? newMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchEvent,
     required TResult Function(String query) searchEvent,
+    required TResult Function(Message newMessage) newMessage,
   }) {
     return fetchEvent();
   }
@@ -122,6 +129,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchEvent,
     TResult? Function(String query)? searchEvent,
+    TResult? Function(Message newMessage)? newMessage,
   }) {
     return fetchEvent?.call();
   }
@@ -131,6 +139,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchEvent,
     TResult Function(String query)? searchEvent,
+    TResult Function(Message newMessage)? newMessage,
     required TResult orElse(),
   }) {
     if (fetchEvent != null) {
@@ -144,6 +153,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchUsers value) fetchEvent,
     required TResult Function(_SearchUsers value) searchEvent,
+    required TResult Function(_NewMessage value) newMessage,
   }) {
     return fetchEvent(this);
   }
@@ -153,6 +163,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchUsers value)? fetchEvent,
     TResult? Function(_SearchUsers value)? searchEvent,
+    TResult? Function(_NewMessage value)? newMessage,
   }) {
     return fetchEvent?.call(this);
   }
@@ -162,6 +173,7 @@ class _$FetchUsersImpl implements _FetchUsers {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchUsers value)? fetchEvent,
     TResult Function(_SearchUsers value)? searchEvent,
+    TResult Function(_NewMessage value)? newMessage,
     required TResult orElse(),
   }) {
     if (fetchEvent != null) {
@@ -241,6 +253,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult when<TResult extends Object?>({
     required TResult Function() fetchEvent,
     required TResult Function(String query) searchEvent,
+    required TResult Function(Message newMessage) newMessage,
   }) {
     return searchEvent(query);
   }
@@ -250,6 +263,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchEvent,
     TResult? Function(String query)? searchEvent,
+    TResult? Function(Message newMessage)? newMessage,
   }) {
     return searchEvent?.call(query);
   }
@@ -259,6 +273,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchEvent,
     TResult Function(String query)? searchEvent,
+    TResult Function(Message newMessage)? newMessage,
     required TResult orElse(),
   }) {
     if (searchEvent != null) {
@@ -272,6 +287,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchUsers value) fetchEvent,
     required TResult Function(_SearchUsers value) searchEvent,
+    required TResult Function(_NewMessage value) newMessage,
   }) {
     return searchEvent(this);
   }
@@ -281,6 +297,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchUsers value)? fetchEvent,
     TResult? Function(_SearchUsers value)? searchEvent,
+    TResult? Function(_NewMessage value)? newMessage,
   }) {
     return searchEvent?.call(this);
   }
@@ -290,6 +307,7 @@ class _$SearchUsersImpl implements _SearchUsers {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchUsers value)? fetchEvent,
     TResult Function(_SearchUsers value)? searchEvent,
+    TResult Function(_NewMessage value)? newMessage,
     required TResult orElse(),
   }) {
     if (searchEvent != null) {
@@ -309,13 +327,154 @@ abstract class _SearchUsers implements ChatEvent {
 }
 
 /// @nodoc
+abstract class _$$NewMessageImplCopyWith<$Res> {
+  factory _$$NewMessageImplCopyWith(
+          _$NewMessageImpl value, $Res Function(_$NewMessageImpl) then) =
+      __$$NewMessageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Message newMessage});
+}
+
+/// @nodoc
+class __$$NewMessageImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$NewMessageImpl>
+    implements _$$NewMessageImplCopyWith<$Res> {
+  __$$NewMessageImplCopyWithImpl(
+      _$NewMessageImpl _value, $Res Function(_$NewMessageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newMessage = null,
+  }) {
+    return _then(_$NewMessageImpl(
+      null == newMessage
+          ? _value.newMessage
+          : newMessage // ignore: cast_nullable_to_non_nullable
+              as Message,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NewMessageImpl implements _NewMessage {
+  const _$NewMessageImpl(this.newMessage);
+
+  @override
+  final Message newMessage;
+
+  @override
+  String toString() {
+    return 'ChatEvent.newMessage(newMessage: $newMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NewMessageImpl &&
+            (identical(other.newMessage, newMessage) ||
+                other.newMessage == newMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NewMessageImplCopyWith<_$NewMessageImpl> get copyWith =>
+      __$$NewMessageImplCopyWithImpl<_$NewMessageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchEvent,
+    required TResult Function(String query) searchEvent,
+    required TResult Function(Message newMessage) newMessage,
+  }) {
+    return newMessage(this.newMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchEvent,
+    TResult? Function(String query)? searchEvent,
+    TResult? Function(Message newMessage)? newMessage,
+  }) {
+    return newMessage?.call(this.newMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchEvent,
+    TResult Function(String query)? searchEvent,
+    TResult Function(Message newMessage)? newMessage,
+    required TResult orElse(),
+  }) {
+    if (newMessage != null) {
+      return newMessage(this.newMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchUsers value) fetchEvent,
+    required TResult Function(_SearchUsers value) searchEvent,
+    required TResult Function(_NewMessage value) newMessage,
+  }) {
+    return newMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchUsers value)? fetchEvent,
+    TResult? Function(_SearchUsers value)? searchEvent,
+    TResult? Function(_NewMessage value)? newMessage,
+  }) {
+    return newMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchUsers value)? fetchEvent,
+    TResult Function(_SearchUsers value)? searchEvent,
+    TResult Function(_NewMessage value)? newMessage,
+    required TResult orElse(),
+  }) {
+    if (newMessage != null) {
+      return newMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NewMessage implements ChatEvent {
+  const factory _NewMessage(final Message newMessage) = _$NewMessageImpl;
+
+  Message get newMessage;
+  @JsonKey(ignore: true)
+  _$$NewMessageImplCopyWith<_$NewMessageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ChatState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(List<UserWithLastMessage> usersWithLastMessages)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -323,7 +482,7 @@ mixin _$ChatState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(List<UserWithLastMessage> usersWithLastMessages)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -331,7 +490,7 @@ mixin _$ChatState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(List<UserWithLastMessage> usersWithLastMessages)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -340,7 +499,7 @@ mixin _$ChatState {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
-    required TResult Function(Success value) success,
+    required TResult Function(_Success value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -348,7 +507,7 @@ mixin _$ChatState {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Error value)? error,
-    TResult? Function(Success value)? success,
+    TResult? Function(_Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -356,7 +515,7 @@ mixin _$ChatState {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
-    TResult Function(Success value)? success,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -420,7 +579,8 @@ class _$InitialImpl implements Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(List<UserWithLastMessage> usersWithLastMessages)
+        success,
   }) {
     return initial();
   }
@@ -431,7 +591,7 @@ class _$InitialImpl implements Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(List<UserWithLastMessage> usersWithLastMessages)? success,
   }) {
     return initial?.call();
   }
@@ -442,7 +602,7 @@ class _$InitialImpl implements Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(List<UserWithLastMessage> usersWithLastMessages)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -457,7 +617,7 @@ class _$InitialImpl implements Initial {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
-    required TResult Function(Success value) success,
+    required TResult Function(_Success value) success,
   }) {
     return initial(this);
   }
@@ -468,7 +628,7 @@ class _$InitialImpl implements Initial {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Error value)? error,
-    TResult? Function(Success value)? success,
+    TResult? Function(_Success value)? success,
   }) {
     return initial?.call(this);
   }
@@ -479,7 +639,7 @@ class _$InitialImpl implements Initial {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
-    TResult Function(Success value)? success,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -534,7 +694,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(List<UserWithLastMessage> usersWithLastMessages)
+        success,
   }) {
     return loading();
   }
@@ -545,7 +706,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(List<UserWithLastMessage> usersWithLastMessages)? success,
   }) {
     return loading?.call();
   }
@@ -556,7 +717,7 @@ class _$LoadingImpl implements Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(List<UserWithLastMessage> usersWithLastMessages)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -571,7 +732,7 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
-    required TResult Function(Success value) success,
+    required TResult Function(_Success value) success,
   }) {
     return loading(this);
   }
@@ -582,7 +743,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Error value)? error,
-    TResult? Function(Success value)? success,
+    TResult? Function(_Success value)? success,
   }) {
     return loading?.call(this);
   }
@@ -593,7 +754,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
-    TResult Function(Success value)? success,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -648,7 +809,8 @@ class _$ErrorImpl implements Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(List<UserWithLastMessage> usersWithLastMessages)
+        success,
   }) {
     return error();
   }
@@ -659,7 +821,7 @@ class _$ErrorImpl implements Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(List<UserWithLastMessage> usersWithLastMessages)? success,
   }) {
     return error?.call();
   }
@@ -670,7 +832,7 @@ class _$ErrorImpl implements Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(List<UserWithLastMessage> usersWithLastMessages)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -685,7 +847,7 @@ class _$ErrorImpl implements Error {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
-    required TResult Function(Success value) success,
+    required TResult Function(_Success value) success,
   }) {
     return error(this);
   }
@@ -696,7 +858,7 @@ class _$ErrorImpl implements Error {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Error value)? error,
-    TResult? Function(Success value)? success,
+    TResult? Function(_Success value)? success,
   }) {
     return error?.call(this);
   }
@@ -707,7 +869,7 @@ class _$ErrorImpl implements Error {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
-    TResult Function(Success value)? success,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -726,6 +888,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<UserWithLastMessage> usersWithLastMessages});
 }
 
 /// @nodoc
@@ -735,26 +899,60 @@ class __$$SuccessImplCopyWithImpl<$Res>
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? usersWithLastMessages = null,
+  }) {
+    return _then(_$SuccessImpl(
+      usersWithLastMessages: null == usersWithLastMessages
+          ? _value._usersWithLastMessages
+          : usersWithLastMessages // ignore: cast_nullable_to_non_nullable
+              as List<UserWithLastMessage>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements Success {
-  const _$SuccessImpl();
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl(
+      {required final List<UserWithLastMessage> usersWithLastMessages})
+      : _usersWithLastMessages = usersWithLastMessages;
+
+  final List<UserWithLastMessage> _usersWithLastMessages;
+  @override
+  List<UserWithLastMessage> get usersWithLastMessages {
+    if (_usersWithLastMessages is EqualUnmodifiableListView)
+      return _usersWithLastMessages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usersWithLastMessages);
+  }
 
   @override
   String toString() {
-    return 'ChatState.success()';
+    return 'ChatState.success(usersWithLastMessages: $usersWithLastMessages)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            const DeepCollectionEquality()
+                .equals(other._usersWithLastMessages, _usersWithLastMessages));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_usersWithLastMessages));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -762,9 +960,10 @@ class _$SuccessImpl implements Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() success,
+    required TResult Function(List<UserWithLastMessage> usersWithLastMessages)
+        success,
   }) {
-    return success();
+    return success(usersWithLastMessages);
   }
 
   @override
@@ -773,9 +972,9 @@ class _$SuccessImpl implements Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? success,
+    TResult? Function(List<UserWithLastMessage> usersWithLastMessages)? success,
   }) {
-    return success?.call();
+    return success?.call(usersWithLastMessages);
   }
 
   @override
@@ -784,11 +983,11 @@ class _$SuccessImpl implements Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? success,
+    TResult Function(List<UserWithLastMessage> usersWithLastMessages)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(usersWithLastMessages);
     }
     return orElse();
   }
@@ -799,7 +998,7 @@ class _$SuccessImpl implements Success {
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
     required TResult Function(Error value) error,
-    required TResult Function(Success value) success,
+    required TResult Function(_Success value) success,
   }) {
     return success(this);
   }
@@ -810,7 +1009,7 @@ class _$SuccessImpl implements Success {
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
     TResult? Function(Error value)? error,
-    TResult? Function(Success value)? success,
+    TResult? Function(_Success value)? success,
   }) {
     return success?.call(this);
   }
@@ -821,7 +1020,7 @@ class _$SuccessImpl implements Success {
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
     TResult Function(Error value)? error,
-    TResult Function(Success value)? success,
+    TResult Function(_Success value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -831,6 +1030,13 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements ChatState {
-  const factory Success() = _$SuccessImpl;
+abstract class _Success implements ChatState {
+  const factory _Success(
+          {required final List<UserWithLastMessage> usersWithLastMessages}) =
+      _$SuccessImpl;
+
+  List<UserWithLastMessage> get usersWithLastMessages;
+  @JsonKey(ignore: true)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

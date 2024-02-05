@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:messenger_app/data/repository/user_repository.dart';
 import 'package:messenger_app/generated/l10n.dart';
 import 'package:messenger_app/presentation/bloc/chat_bloc/chat_bloc.dart';
@@ -85,48 +86,57 @@ class _ChatPageState extends State<ChatPage> {
                     initial: () => const SizedBox.shrink(),
                     loading: () => const CupertinoActivityIndicator(radius: 20),
                     error: () => Text(S.of(context).error),
-                    success: () {
-                      final users =
-                          context.select((ChatBloc bloc) => bloc.users);
+                    success: (usersWithLastMessages) {
                       return ListView.builder(
-                        itemCount: users.length,
+                        itemCount: usersWithLastMessages.length,
                         itemBuilder: (context, index) {
-                          final user = users[index];
+                          final user = usersWithLastMessages[index];
                           return Column(
                             children: [
                               Stack(
                                 children: [
                                   CupertinoListTile(
-                                    leading:
-                                        CircularAva(text: user.name, size: 50),
+                                    leading: CircularAva(
+                                        text: user.user.name, size: 50),
                                     leadingSize: 50,
-                                    title: Text(user.name),
-                                    subtitle: const Text('Test text'),
+                                    title: Text(user.user.name),
+                                    subtitle:
+                                        Text(user.lastMessage?.message ?? ''),
                                     onTap: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => DialogPage(
-                                            receiverName: user.name,
-                                            receiverUid: user.uid,
+                                            receiverName: user.user.name,
+                                            receiverUid: user.user.uid,
                                             leading: CircularAva(
-                                              text: user.name,
+                                              text: user.user.name,
                                               size: 50,
                                             ),
                                           ),
                                         ),
-                                      );
+                                      ).then((result) {
+                                        if (result == true) {
+                                          context.read<ChatBloc>().add(
+                                              const ChatEvent.fetchEvent());
+                                        }
+                                      });
                                     },
                                   ),
-                                  const Positioned(
+                                  Positioned(
                                     top: 8,
                                     right: 20,
-                                    child: Text('22:12', style: kHintTextStyle),
+                                    child: Text(
+                                      _formatDate(user.lastMessageTime),
+                                      style: kHintTextStyle,
+                                    ),
                                   ),
                                 ],
                               ),
                               const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
                                 child: Divider(
                                   height: 20,
                                   color: AppColors.strokeColor,
@@ -145,5 +155,12 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
     );
+  }
+
+  String _formatDate(DateTime? date) {
+    if (date != null) {
+      return DateFormat('HH:mm').format(date);
+    }
+    return '';
   }
 }

@@ -32,6 +32,31 @@ class DialogRepository extends ChangeNotifier {
         .add(newMsg.toMap());
   }
 
+  Future<Map<String, String>> getLastMessageAndTime(String userId) async {
+    final currentUserUid = _auth.currentUser!.uid;
+    final List<String> ids = [currentUserUid, userId];
+    ids.sort();
+    final String chatId = ids.join("_");
+
+    final snapshot = await _db
+        .collection('chats')
+        .doc(chatId)
+        .collection('messages')
+        .orderBy('timestamp', descending: true)
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      final lastMessage = snapshot.docs.first['message'] as String;
+      final timestamp = snapshot.docs.first['timestamp'] as Timestamp;
+      final lastMessageTime = timestamp.toDate().toString();
+
+      return {'lastMessage': lastMessage, 'lastMessageTime': lastMessageTime};
+    }
+
+    return {'lastMessage': '', 'lastMessageTime': ''};
+  }
+
   Stream<List<Message>> getMsgs(String firstUid, String secondUid) {
     List<String> ids = [firstUid, secondUid];
     ids.sort();

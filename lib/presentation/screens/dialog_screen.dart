@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger_app/data/repository/dialog_repository.dart';
 import 'package:messenger_app/generated/l10n.dart';
@@ -105,7 +104,7 @@ class _DialogPageState extends State<DialogPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
