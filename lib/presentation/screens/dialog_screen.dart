@@ -95,195 +95,198 @@ class _DialogPageState extends State<DialogPage> {
     return BlocProvider(
       create: (context) => _dialogBloc,
       child: CupertinoPageScaffold(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context, true);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-                        child: Row(
-                          children: [
-                            const ImageIcon(
-                              AssetImage("assets/icons/arrowleft.png"),
-                              size: 24,
-                            ),
-                            const SizedBox(width: 6),
-                            widget.leading,
-                            const SizedBox(width: 15),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  widget.receiverName,
-                                  style: kNameTextStyle,
-                                ),
-                                const SizedBox(height: 3),
-                                const Text(
-                                  "В сети",
-                                  style: kHintTextStyle,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(
-                color: AppColors.strokeColor,
-                height: 1,
-              ),
-              Expanded(
-                child: BlocBuilder<DialogBloc, DialogState>(
-                  builder: (context, state) {
-                    return state.when(
-                      initial: () => const SizedBox.shrink(),
-                      loading: () => const CupertinoActivityIndicator(),
-                      error: () => Text(S.of(context).error),
-                      success: (stream) {
-                        return StreamBuilder<List<Message>>(
-                          stream: stream,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const CupertinoActivityIndicator();
-                            } else if (snapshot.hasError) {
-                              return Text(S.of(context).error);
-                            } else {
-                              List<Message>? messages = snapshot.data;
-                              messages ??= [];
-                              messages = messages.reversed.toList();
-                              return ListView.builder(
-                                itemCount: messages.length,
-                                itemBuilder: (context, index) {
-                                  final reversedIndex =
-                                      messages!.length - 1 - index;
-                                  final message = messages[reversedIndex];
-                                  bool showDateSeparator = false;
-
-                                  if (reversedIndex == messages.length - 1) {
-                                    showDateSeparator = true;
-                                  } else {
-                                    DateTime curDate =
-                                        message.timestamp.toDate();
-                                    DateTime prevDate =
-                                        messages[reversedIndex + 1]
-                                            .timestamp
-                                            .toDate();
-
-                                    if (curDate.day != prevDate.day ||
-                                        curDate.month != prevDate.month ||
-                                        curDate.year != prevDate.year) {
-                                      showDateSeparator = true;
-                                    }
-                                  }
-
-                                  return Column(
-                                    children: [
-                                      if (showDateSeparator)
-                                        _buildDateSeparator(
-                                            message.timestamp.toDate()),
-                                      ChatBubble(
-                                        msg: message,
-                                        senderUid: message.senderUid,
-                                        currentUserUid: _auth.currentUser!.uid,
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            }
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-              const Divider(
-                color: AppColors.strokeColor,
-                height: 1,
-              ),
-              BlocProvider.value(
-                value: _dialogBloc,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        child: Material(
+          child: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  color: Colors.white,
                   child: Row(
                     children: [
-                      Container(
-                        width: 42,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: AppColors.strokeColor,
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const ImageIcon(
-                            AssetImage("assets/icons/v52.png"),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Container(
-                          height: 42,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: AppColors.strokeColor,
-                          ),
-                          child: CupertinoTextField(
-                            controller: _msgController,
-                            placeholder: S.of(context).message,
-                            padding: const EdgeInsets.only(left: 12),
-                            style: kDateTextStyle.copyWith(fontSize: 16),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Colors.transparent),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        width: 42,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: AppColors.strokeColor,
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            BlocProvider.of<DialogBloc>(context).add(
-                              SendEvent(
-                                receiverUid: widget.receiverUid,
-                                message: _msgController.text,
-                                senderUid: _auth.currentUser!.uid,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context, true);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                          child: Row(
+                            children: [
+                              const ImageIcon(
+                                AssetImage("assets/icons/arrowleft.png"),
+                                size: 24,
                               ),
-                            );
-                            _msgController.clear();
-                          },
-                          icon: const ImageIcon(
-                            AssetImage("assets/icons/audio.png"),
+                              const SizedBox(width: 6),
+                              widget.leading,
+                              const SizedBox(width: 15),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.receiverName,
+                                    style: kNameTextStyle,
+                                  ),
+                                  const SizedBox(height: 3),
+                                  const Text(
+                                    "В сети",
+                                    style: kHintTextStyle,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                const Divider(
+                  color: AppColors.strokeColor,
+                  height: 1,
+                ),
+                Expanded(
+                  child: BlocBuilder<DialogBloc, DialogState>(
+                    builder: (context, state) {
+                      return state.when(
+                        initial: () => const SizedBox.shrink(),
+                        loading: () => const CupertinoActivityIndicator(),
+                        error: () => Text(S.of(context).error),
+                        success: (stream) {
+                          return StreamBuilder<List<Message>>(
+                            stream: stream,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const CupertinoActivityIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text(S.of(context).error);
+                              } else {
+                                List<Message>? messages = snapshot.data;
+                                messages ??= [];
+                                messages = messages.reversed.toList();
+                                return ListView.builder(
+                                  itemCount: messages.length,
+                                  itemBuilder: (context, index) {
+                                    final reversedIndex =
+                                        messages!.length - 1 - index;
+                                    final message = messages[reversedIndex];
+                                    bool showDateSeparator = false;
+
+                                    if (reversedIndex == messages.length - 1) {
+                                      showDateSeparator = true;
+                                    } else {
+                                      DateTime curDate =
+                                          message.timestamp.toDate();
+                                      DateTime prevDate =
+                                          messages[reversedIndex + 1]
+                                              .timestamp
+                                              .toDate();
+
+                                      if (curDate.day != prevDate.day ||
+                                          curDate.month != prevDate.month ||
+                                          curDate.year != prevDate.year) {
+                                        showDateSeparator = true;
+                                      }
+                                    }
+
+                                    return Column(
+                                      children: [
+                                        if (showDateSeparator)
+                                          _buildDateSeparator(
+                                              message.timestamp.toDate()),
+                                        ChatBubble(
+                                          msg: message,
+                                          senderUid: message.senderUid,
+                                          currentUserUid:
+                                              _auth.currentUser!.uid,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+                const Divider(
+                  color: AppColors.strokeColor,
+                  height: 1,
+                ),
+                BlocProvider.value(
+                  value: _dialogBloc,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 14),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: AppColors.strokeColor,
+                          ),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const ImageIcon(
+                              AssetImage("assets/icons/v52.png"),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Container(
+                            height: 42,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              color: AppColors.strokeColor,
+                            ),
+                            child: CupertinoTextField(
+                              controller: _msgController,
+                              placeholder: S.of(context).message,
+                              padding: const EdgeInsets.only(left: 12),
+                              style: kDateTextStyle.copyWith(fontSize: 16),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: Colors.transparent),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          width: 42,
+                          height: 42,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            color: AppColors.strokeColor,
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              BlocProvider.of<DialogBloc>(context).add(
+                                SendEvent(
+                                  receiverUid: widget.receiverUid,
+                                  message: _msgController.text,
+                                  senderUid: _auth.currentUser!.uid,
+                                ),
+                              );
+                              _msgController.clear();
+                            },
+                            icon: const ImageIcon(
+                              AssetImage("assets/icons/audio.png"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

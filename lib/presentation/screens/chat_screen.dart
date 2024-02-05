@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:messenger_app/data/repository/user_repository.dart';
 import 'package:messenger_app/generated/l10n.dart';
 import 'package:messenger_app/presentation/bloc/chat_bloc/chat_bloc.dart';
+import 'package:messenger_app/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:messenger_app/presentation/screens/dialog_screen.dart';
 import 'package:messenger_app/presentation/widgets/app_circular_ava.dart';
 import 'package:messenger_app/presentation/widgets/app_searchbar.dart';
@@ -64,94 +65,104 @@ class _ChatPageState extends State<ChatPage> {
           S.of(context).chats,
           style: kAppBarTitleStyle,
         ),
+        trailing: GestureDetector(
+          child: const Icon(Icons.logout_rounded),
+          onTap: () {
+            context.read<UserBloc>().add(const UserEvent.logoutEvent());
+            AutoRouter.of(context).pushNamed('/login');
+          },
+        ),
         border: null,
         backgroundColor: Colors.white,
       ),
-      child: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24, top: 6),
-              child: AppSearchBar(controller: _searchController),
-            ),
-            const Divider(
-              color: AppColors.strokeColor,
-              height: 1,
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: BlocBuilder<ChatBloc, ChatState>(
-                builder: (context, state) {
-                  return state.when(
-                    initial: () => const SizedBox.shrink(),
-                    loading: () => const CupertinoActivityIndicator(radius: 20),
-                    error: () => Text(S.of(context).error),
-                    success: (usersWithLastMessages) {
-                      return ListView.builder(
-                        itemCount: usersWithLastMessages.length,
-                        itemBuilder: (context, index) {
-                          final user = usersWithLastMessages[index];
-                          return Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  CupertinoListTile(
-                                    leading: CircularAva(
-                                        text: user.user.name, size: 50),
-                                    leadingSize: 50,
-                                    title: Text(user.user.name),
-                                    subtitle:
-                                        Text(user.lastMessage?.message ?? ''),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => DialogPage(
-                                            receiverName: user.user.name,
-                                            receiverUid: user.user.uid,
-                                            leading: CircularAva(
-                                              text: user.user.name,
-                                              size: 50,
+      child: Material(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24, top: 6),
+                child: AppSearchBar(controller: _searchController),
+              ),
+              const Divider(
+                color: AppColors.strokeColor,
+                height: 1,
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: BlocBuilder<ChatBloc, ChatState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () => const SizedBox.shrink(),
+                      loading: () =>
+                          const CupertinoActivityIndicator(radius: 20),
+                      error: () => Text(S.of(context).error),
+                      success: (usersWithLastMessages) {
+                        return ListView.builder(
+                          itemCount: usersWithLastMessages.length,
+                          itemBuilder: (context, index) {
+                            final user = usersWithLastMessages[index];
+                            return Column(
+                              children: [
+                                Stack(
+                                  children: [
+                                    CupertinoListTile(
+                                      leading: CircularAva(
+                                          text: user.user.name, size: 50),
+                                      leadingSize: 50,
+                                      title: Text(user.user.name),
+                                      subtitle:
+                                          Text(user.lastMessage?.message ?? ''),
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DialogPage(
+                                              receiverName: user.user.name,
+                                              receiverUid: user.user.uid,
+                                              leading: CircularAva(
+                                                text: user.user.name,
+                                                size: 50,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ).then((result) {
-                                        if (result == true) {
-                                          context.read<ChatBloc>().add(
-                                              const ChatEvent.fetchEvent());
-                                        }
-                                      });
-                                    },
-                                  ),
-                                  Positioned(
-                                    top: 8,
-                                    right: 20,
-                                    child: Text(
-                                      _formatDate(user.lastMessageTime),
-                                      style: kHintTextStyle,
+                                        ).then((result) {
+                                          if (result == true) {
+                                            context.read<ChatBloc>().add(
+                                                const ChatEvent.fetchEvent());
+                                          }
+                                        });
+                                      },
                                     ),
+                                    Positioned(
+                                      top: 8,
+                                      right: 20,
+                                      child: Text(
+                                        _formatDate(user.lastMessageTime),
+                                        style: kHintTextStyle,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16,
                                   ),
-                                ],
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 16,
+                                  child: Divider(
+                                    height: 20,
+                                    color: AppColors.strokeColor,
+                                  ),
                                 ),
-                                child: Divider(
-                                  height: 20,
-                                  color: AppColors.strokeColor,
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  );
-                },
+                              ],
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

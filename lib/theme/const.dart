@@ -27,7 +27,6 @@ const TextStyle kNameTextStyle = TextStyle(
   fontSize: 15,
   fontFamily: 'Gilroy',
   fontWeight: FontWeight.w600,
-  height: 0,
 );
 
 const TextStyle kDateTextStyle = TextStyle(
@@ -35,14 +34,12 @@ const TextStyle kDateTextStyle = TextStyle(
   fontSize: 12,
   fontFamily: 'Gilroy',
   fontWeight: FontWeight.w600,
-  height: 0,
 );
 
 const TextStyle kSentTextStyle = TextStyle(
   color: AppColors.messageTextColor,
   fontFamily: 'Gilroy',
   fontWeight: FontWeight.w500,
-  height: 0,
 );
 
 const TextStyle kReceivedTextStyle = TextStyle(
@@ -50,5 +47,4 @@ const TextStyle kReceivedTextStyle = TextStyle(
   fontSize: 14,
   fontFamily: 'Gilroy',
   fontWeight: FontWeight.w500,
-  height: 0,
 );
