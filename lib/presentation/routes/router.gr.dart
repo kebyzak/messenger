@@ -29,6 +29,7 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           receiverUid: args.receiverUid,
           receiverName: args.receiverName,
+          leading: args.leading,
         ),
       );
     },
@@ -72,6 +73,7 @@ class DialogRoute extends PageRouteInfo<DialogRouteArgs> {
     Key? key,
     required String receiverUid,
     required String receiverName,
+    required Widget leading,
     List<PageRouteInfo>? children,
   }) : super(
           DialogRoute.name,
@@ -79,6 +81,7 @@ class DialogRoute extends PageRouteInfo<DialogRouteArgs> {
             key: key,
             receiverUid: receiverUid,
             receiverName: receiverName,
+            leading: leading,
           ),
           initialChildren: children,
         );
@@ -93,6 +96,7 @@ class DialogRouteArgs {
     this.key,
     required this.receiverUid,
     required this.receiverName,
+    required this.leading,
   });
 
   final Key? key;
@@ -101,9 +105,11 @@ class DialogRouteArgs {
 
   final String receiverName;
 
+  final Widget leading;
+
   @override
   String toString() {
-    return 'DialogRouteArgs{key: $key, receiverUid: $receiverUid, receiverName: $receiverName}';
+    return 'DialogRouteArgs{key: $key, receiverUid: $receiverUid, receiverName: $receiverName, leading: $leading}';
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:messenger_app/theme/app_colors.dart';
 
 const TextStyle kAppBarTextStyle = TextStyle(
@@ -20,4 +20,35 @@ const TextStyle kHintTextStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w500,
   fontFamily: 'Gilroy',
+);
+
+const TextStyle kNameTextStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 15,
+  fontFamily: 'Gilroy',
+  fontWeight: FontWeight.w600,
+  height: 0,
+);
+
+const TextStyle kDateTextStyle = TextStyle(
+  color: AppColors.grayColor,
+  fontSize: 12,
+  fontFamily: 'Gilroy',
+  fontWeight: FontWeight.w600,
+  height: 0,
+);
+
+const TextStyle kSentTextStyle = TextStyle(
+  color: AppColors.messageTextColor,
+  fontFamily: 'Gilroy',
+  fontWeight: FontWeight.w500,
+  height: 0,
+);
+
+const TextStyle kReceivedTextStyle = TextStyle(
+  color: AppColors.blackColor,
+  fontSize: 14,
+  fontFamily: 'Gilroy',
+  fontWeight: FontWeight.w500,
+  height: 0,
 );

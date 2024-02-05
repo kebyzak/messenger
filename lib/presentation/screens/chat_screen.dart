@@ -109,6 +109,10 @@ class _ChatPageState extends State<ChatPage> {
                                           builder: (context) => DialogPage(
                                             receiverName: user.name,
                                             receiverUid: user.uid,
+                                            leading: CircularAva(
+                                              text: user.name,
+                                              size: 50,
+                                            ),
                                           ),
                                         ),
                                       );
